@@ -1,4 +1,3 @@
-# AntiGhost-Lab-Desktop
 Herramienta gratuita para Windows que permite probar pulsaciones simultáneas, detectar posibles limitaciones de anti-ghosting y comparar el comportamiento de distintos teclados.
 
 # AntiGhost Lab Desktop
