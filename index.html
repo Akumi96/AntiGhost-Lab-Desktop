@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AntiGhost Lab Desktop — Comparador de teclados</title>
+<style>
+:root{color-scheme:dark;--bg:#111019;--p:#1d1b2a;--p2:#28253a;--line:#403a55;--txt:#f7f2ff;--muted:#b9b0cb;--pink:#ff79c6;--purple:#b49aff;--green:#69e6b2;--red:#ff788d;--amber:#ffd27a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#352442 0,#111019 55%);color:var(--txt);font:15px/1.5 system-ui,Segoe UI,sans-serif}main{max-width:1120px;margin:auto;padding:24px 16px 50px}h1{font-size:clamp(1.9rem,4vw,2.8rem);letter-spacing:-.04em;margin:0}h1 em{font-style:normal;color:var(--pink)}h2{font-size:1.15rem;margin:0 0 12px}p,.muted{color:var(--muted)}.sub{margin:4px 0 18px}.panel{border:1px solid var(--line);background:linear-gradient(145deg,#211e30,#191722);border-radius:16px;padding:18px;margin:14px 0}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.field{display:flex;flex-direction:column;gap:5px;min-width:170px}label{color:#e4d9f7;font-size:.9rem}input[type=text],select{width:100%;background:#2b273d;color:var(--txt);border:1px solid #514763;border-radius:9px;padding:10px;font:inherit}button{background:#302b43;color:var(--txt);border:1px solid #574b70;border-radius:9px;padding:10px 13px;font:inherit;cursor:pointer}button:hover{border-color:var(--pink)}button.primary{background:linear-gradient(100deg,#9655ef,#e849a0);border:0;font-weight:700}button:disabled{opacity:.45;cursor:not-allowed}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.stat{background:var(--p2);border-radius:12px;padding:13px}.stat b{display:block;font-size:1.8rem;color:var(--pink);font-variant-numeric:tabular-nums}.stat span{font-size:.8rem;color:var(--muted)}.keys{display:flex;flex-wrap:wrap;gap:6px;min-height:40px;align-content:flex-start}.key{display:inline-flex;align-items:center;justify-content:center;min-width:34px;min-height:32px;padding:3px 9px;background:#2c293d;border:1px solid #504966;border-bottom-width:3px;border-radius:7px;font-size:.82rem}.key.on{background:#743d78;border-color:var(--pink)}.key.fail{background:#612c3c;border-color:var(--red)}.status{font-weight:650}.good{color:var(--green)}.bad{color:var(--red)}.warn{color:var(--amber)}.notice{border-left:3px solid var(--purple);background:#b49aff12;padding:10px 12px;border-radius:4px;color:#e0d7f2}.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:7px;margin:12px 0}.check{display:flex;align-items:center;gap:8px;background:var(--p2);padding:9px;border-radius:9px}.check input{accent-color:var(--pink);width:17px;height:17px}.small{font-size:.83rem}.pill{display:inline-block;background:#3a304e;border-radius:999px;padding:3px 8px;font-size:.78rem;color:#e8d5ff}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:.88rem}th,td{text-align:left;padding:9px;border-bottom:1px solid var(--line);vertical-align:top}th{color:#e3d4ff}td.pass{color:var(--green)}td.fail{color:var(--red)}.bar{height:8px;background:#373147;border-radius:99px;overflow:hidden;min-width:70px}.bar span{display:block;height:100%;background:linear-gradient(90deg,#9d72ff,#ff79c6)}.footer{font-size:.82rem;color:var(--muted)}@media(max-width:650px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:14px}}
+</style></head>
+<body><main>
+<h1>AntiGhost <em>Lab Desktop</em> ⌨️</h1>
+<p class="sub">Pruebas repetibles y comparación de teclados. Aplicación de escritorio para Windows; no envía datos por internet.</p>
+
+<section class="panel">
+<h2>1 · Identifica el teclado que estás probando</h2>
+<div class="row">
+ <div class="field"><label for="keyboardName">Nombre del teclado</label><input id="keyboardName" type="text" value="Redragon" placeholder="Ej. Redragon / XPG"></div>
+ <div class="field"><label for="layout">Distribución (opcional)</label><select id="layout"><option>Español (Latinoamérica)</option><option>Español (España)</option><option>Inglés (US)</option><option>Otra / no sé</option></select></div>
+</div>
+<p class="small">Prueba un teclado a la vez. Para comparar, guarda los resultados del primero, cambia al segundo y repite exactamente los mismos conjuntos.</p>
+</section>
+
+<section class="panel">
+<h2>2 · Captura en directo</h2>
+<p>Activa la captura y mantén teclas físicas pulsadas al mismo tiempo. Durante la captura se intentan bloquear las acciones normales de las teclas. Algunos atajos del sistema o de la aplicación (como Alt+F4, Ctrl+W o Alt+Tab) no se pueden bloquear con seguridad.</p><div class="notice small">🛡️ <b>Modo protegido:</b> captura las teclas sin escribir en los campos ni desplazar la página. 💾 <b>Autoguardado:</b> cada prueba terminada se guarda en esta aplicación. Si la ventana pierde el foco, la prueba se cancela sin generar un resultado engañoso.</div>
+<div class="stats">
+<div class="stat"><b id="now">0</b><span>Pulsadas ahora</span></div>
+<div class="stat"><b id="peak">0</b><span>Máximo simultáneo observado</span></div>
+<div class="stat"><b id="unique">0</b><span>Códigos distintos detectados</span></div>
+<div class="stat"><b id="events">0</b><span>Eventos keydown iniciales</span></div>
+</div>
+<div class="actions"><button class="primary" id="start">Iniciar captura</button><button id="stop">Detener captura</button><button id="resetLive">Reiniciar contadores</button></div>
+<p id="liveStatus" class="status">Captura detenida.</p><div id="held" class="keys"><span class="muted">Las teclas mantenidas aparecerán aquí.</span></div>
+</section>
+
+<section class="panel">
+<h2>3 · Prueba de combinación</h2>
+<div class="notice"><b>Cómo funciona:</b> al armar la prueba tendrás 2 segundos para prepararte y después 8 segundos para pulsar y soltar las teclas seleccionadas. Se guardará qué teclas llegaron, el máximo número de teclas esperadas que estuvieron pulsadas a la vez y el máximo total simultáneo. No hace falta que las mantengas hasta el final.</div>
+<div class="row" style="margin-top:12px">
+ <div class="field"><label for="preset">Conjunto de prueba</label><select id="preset">
+ <option value="gaming">Gaming (WASD + Shift + Espacio + Ctrl)</option><option value="gaming6">Gaming compacto (WASD + Shift + Espacio)</option><option value="arrows">Flechas + Shift + Ctrl + Alt</option><option value="letters">Fila A–L</option><option value="numbers">Fila numérica 1–0</option><option value="home">Fila central (ASDF + JKLÑ*)</option><option value="custom">Personalizado</option></select></div>
+ <div class="field"><label for="testTag">Etiqueta de prueba (opcional)</label><input id="testTag" type="text" placeholder="Ej. WASD + modificadores"></div>
+</div>
+<div id="checks" class="checks"></div>
+<div class="actions"><button class="primary" id="arm">Armar prueba</button><button id="cancel">Cancelar</button><button id="clearHistory">Borrar resultados de esta página</button></div>
+<p id="testStatus" class="status">Elige un conjunto y arma la prueba.</p>
+<div><span class="muted small">Esperadas:</span><div id="expected" class="keys"></div></div>
+<div class="tablewrap" style="margin-top:12px"><table><thead><tr><th>Hora</th><th>Teclado</th><th>Conjunto</th><th>Teclas recibidas</th><th>Máx. esperadas simultáneas</th><th>Máx. total</th><th>Lectura</th></tr></thead><tbody id="results"><tr><td colspan="7" class="muted">Aún no hay pruebas.</td></tr></tbody></table></div>
+<div class="actions"><button id="exportJson">Exportar informe JSON</button><button id="exportCsv">Exportar CSV</button></div>
+</section>
+
+<section class="panel">
+<h2>4 · Comparar resultados guardados</h2>
+<p>Los resultados de todos los teclados que pruebes en esta página se agrupan aquí. Para una comparación justa, usa los mismos conjuntos en cada teclado y repite cada prueba 3 veces o más.</p>
+<div id="comparison" class="tablewrap"><p class="muted">Guarda al menos una prueba para ver el resumen.</p></div>
+</section>
+
+<section class="panel">
+<h2>Qué significa el resultado</h2>
+<ul>
+<li><b>Teclas recibidas:</b> teclas seleccionadas cuyo evento llegó a la página en algún momento de la ventana.</li>
+<li><b>Máx. esperadas simultáneas:</b> mayor cantidad de teclas de esa combinación que Chrome observó pulsadas a la vez.</li>
+<li><b>Máx. total:</b> mayor cantidad de todas las teclas mantenidas que Chrome observó a la vez durante esa prueba.</li>
+<li><b>Una tecla ausente no demuestra por sí sola ghosting.</b> Puede ser una pulsación no simultánea, una tecla especial bloqueada por el sistema, el navegador o una limitación de la página.</li>
+<li>Esta página no puede detectar la tecla Fn en la mayoría de los teclados ni certificar directamente el circuito eléctrico. El navegador también puede interceptar atajos del sistema.</li>
+</ul>
+<p class="notice">Método recomendado: conecta cada teclado al mismo PC y puerto USB, usa la misma distribución y repite las mismas combinaciones. Para cada conjunto, intenta mantener todas las teclas al mismo tiempo; prueba 2, 3, 4, 5, 6 y más teclas, cambiando también qué teclas forman el grupo.</p>
+</section>
+<footer class="footer">AntiGhost Lab 3.0 · Prototipo local. Historial guardado automáticamente en esta aplicación (localStorage). Exporta JSON o CSV como respaldo; el almacenamiento puede borrarse al limpiar datos del navegador.</footer>
+</main>
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+const names={Space:'Espacio',ShiftLeft:'Shift izq.',ShiftRight:'Shift der.',ControlLeft:'Ctrl izq.',ControlRight:'Ctrl der.',AltLeft:'Alt izq.',AltRight:'Alt der.',MetaLeft:'Win izq.',MetaRight:'Win der.',ArrowUp:'↑',ArrowDown:'↓',ArrowLeft:'←',ArrowRight:'→',Enter:'Enter',Escape:'Esc',Backspace:'Retroceso',Tab:'Tab',CapsLock:'Bloq Mayús',Backslash:'\\',BracketLeft:'[',BracketRight:']',Semicolon:';',Quote:"'",Comma:',',Period:'.',Slash:'/',Minus:'-',Equal:'=',NumpadEnter:'Enter num.'};
+const label=c=>names[c]||(c.startsWith('Key')?c.slice(3):c.startsWith('Digit')?c.slice(5):c.startsWith('Numpad')?'Num '+c.slice(6):c);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const presets={
+gaming:['KeyW','KeyA','KeyS','KeyD','ShiftLeft','Space','ControlLeft'],
+gaming6:['KeyW','KeyA','KeyS','KeyD','ShiftLeft','Space'],
+arrows:['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','ShiftLeft','ControlLeft','AltLeft'],
+letters:['KeyA','KeyS','KeyD','KeyF','KeyG','KeyH','KeyJ','KeyK','KeyL'],
+numbers:['Digit1','Digit2','Digit3','Digit4','Digit5','Digit6','Digit7','Digit8','Digit9','Digit0'],
+home:['KeyA','KeyS','KeyD','KeyF','KeyJ','KeyK','KeyL','Semicolon'],
+custom:['KeyW','KeyA','KeyS','KeyD']
+};
+const STORE='antighost-lab-v3-history';
+function loadHistory(){try{const raw=JSON.parse(localStorage.getItem(STORE)||'[]');return Array.isArray(raw)?raw.filter(r=>r&&Array.isArray(r.expected)&&Array.isArray(r.received)&&Array.isArray(r.missing)).slice(0,2000):[]}catch{return []}}
+function saveHistory(){try{localStorage.setItem(STORE,JSON.stringify(history));return true}catch{$('testStatus').textContent+=' No se pudo guardar localmente: exporta tus resultados.';return false}}
+let selected=[...presets.gaming],capturing=false,held=new Set(),seen=new Set(),peak=0,events=0,history=loadHistory(),activeTest=null,phaseTimer=null,endTimer=null;
+function keyMarkup(c,cls='key'){return `<span class="${cls}">${esc(label(c))}</span>`}
+function renderLive(){
+$('now').textContent=held.size;$('peak').textContent=peak;$('unique').textContent=seen.size;$('events').textContent=events;
+$('held').innerHTML=held.size?[...held].map(c=>keyMarkup(c,'key on')).join(''):'<span class="muted">Ninguna tecla mantenida.</span>';
+}
+function drawChecks(){
+$('checks').innerHTML=selected.map(c=>`<label class="check"><input type="checkbox" value="${c}" checked> <span>${esc(label(c))}</span><span class="muted small">${c}</span></label>`).join('');
+$('expected').innerHTML=selected.map(c=>keyMarkup(c)).join('');
+}
+function chosen(){return [...$('checks').querySelectorAll('input:checked')].map(x=>x.value)}
+function updateSelection(){selected=chosen();$('expected').innerHTML=selected.map(c=>keyMarkup(c)).join('')}
+$('preset').onchange=()=>{selected=[...(presets[$('preset').value]||presets.custom)];drawChecks();};
+$('checks').addEventListener('change',updateSelection);
+$('start').onclick=()=>{document.activeElement?.blur();capturing=true;$('liveStatus').textContent='Capturando…';$('liveStatus').className='status good'};
+$('stop').onclick=()=>{capturing=false;held.clear();renderLive();$('liveStatus').textContent='Captura detenida.';$('liveStatus').className='status'};
+$('resetLive').onclick=()=>{held.clear();seen.clear();peak=0;events=0;renderLive()};
+function onDown(e){
+ if(!capturing&&!activeTest)return;
+ // Best-effort: browser/OS reserved shortcuts can still run.
+ if(e.cancelable)e.preventDefault();
+ e.stopImmediatePropagation();
+ if(!e.repeat){events++;seen.add(e.code)}
+ held.add(e.code);
+ peak=Math.max(peak,held.size);
+ if(activeTest && activeTest.phase==='running'){
+  activeTest.seen.add(e.code);
+  const n=activeTest.expected.reduce((sum,c)=>sum+(held.has(c)?1:0),0);
+  activeTest.maxExpected=Math.max(activeTest.maxExpected,n);
+  activeTest.maxTotal=Math.max(activeTest.maxTotal,held.size);
+ }
+ renderLive();
+}
+function onUp(e){
+ if(capturing||activeTest){if(e.cancelable)e.preventDefault();e.stopImmediatePropagation()}
+ held.delete(e.code);
+ if(activeTest && activeTest.phase==='running'){
+  const n=activeTest.expected.reduce((sum,c)=>sum+(held.has(c)?1:0),0);
+  activeTest.maxExpected=Math.max(activeTest.maxExpected,n);
+  activeTest.maxTotal=Math.max(activeTest.maxTotal,held.size);
+ }
+ renderLive();
+}
+document.addEventListener('keydown',onDown,{capture:true,passive:false});document.addEventListener('keyup',onUp,{capture:true,passive:false});
+window.addEventListener('blur',()=>{
+ held.clear();renderLive();
+ if(activeTest){cancelTimers();activeTest=null;capturing=false;$('testStatus').textContent='Prueba cancelada: la ventana perdió el foco. No se guardó ningún resultado parcial.';$('testStatus').className='status warn'}
+ else if(capturing){capturing=false;$('liveStatus').textContent='Captura detenida: la ventana perdió el foco.';$('liveStatus').className='status warn'}
+});
+function cancelTimers(){if(phaseTimer)clearTimeout(phaseTimer);if(endTimer)clearTimeout(endTimer);phaseTimer=endTimer=null}
+$('arm').onclick=()=>{
+ if(activeTest){return}
+ const exp=chosen();if(!exp.length){$('testStatus').textContent='Selecciona al menos una tecla.';return}
+ cancelTimers();
+ activeTest={expected:exp,seen:new Set(),maxExpected:0,maxTotal:0,phase:'preparing'};
+ document.activeElement?.blur();capturing=true;held.clear();
+ $('testStatus').textContent='Prepárate… la captura comienza en 2 segundos.';
+ $('testStatus').className='status warn';
+ phaseTimer=setTimeout(()=>{
+  if(!activeTest)return;
+  held.clear();activeTest.phase='running';
+  $('testStatus').textContent='¡Ahora! Pulsa y suelta las teclas seleccionadas simultáneamente durante 8 segundos.';
+  $('testStatus').className='status good';
+  endTimer=setTimeout(finishTest,8000);
+ },2000);
+};
+function finishTest(){
+ if(!activeTest)return;
+ const t=activeTest;const missing=t.expected.filter(c=>!t.seen.has(c));
+ const allReceived=missing.length===0;
+ const fullOverlap=t.maxExpected===t.expected.length;
+ history.unshift({time:new Date().toLocaleTimeString(),keyboard:$('keyboardName').value.trim()||'Sin nombre',layout:$('layout').value,tag:$('testTag').value.trim()||$('preset').selectedOptions[0].textContent,expected:[...t.expected],received:[...t.seen].filter(c=>t.expected.includes(c)),missing,maxExpected:t.maxExpected,maxTotal:t.maxTotal,fullOverlap,allReceived});
+ activeTest=null;capturing=false;cancelTimers();held.clear();renderLive();saveHistory();drawResults();drawComparison();
+ $('testStatus').textContent=fullOverlap?'Se observó toda la combinación seleccionada pulsada a la vez. Repite la prueba para confirmar.':allReceived?'Se recibieron todas las teclas, pero no se observaron todas pulsadas simultáneamente. Repite intentando mantenerlas juntas.':'No se recibieron todas las teclas seleccionadas. Repite la prueba; esto no demuestra por sí solo un fallo de anti-ghosting.';
+ $('testStatus').className='status '+(fullOverlap?'good':allReceived?'warn':'bad');
+}
+$('cancel').onclick=()=>{cancelTimers();activeTest=null;capturing=false;held.clear();renderLive();$('testStatus').textContent='Prueba cancelada.';$('testStatus').className='status'};
+$('clearHistory').onclick=()=>{if(!confirm('¿Borrar todos los resultados guardados en esta aplicación?'))return;history=[];saveHistory();drawResults();drawComparison();$('testStatus').textContent='Historial borrado.'};
+function drawResults(){
+ $('results').innerHTML=history.length?history.map(r=>{
+ const n=r.received.length,den=r.expected.length;
+ return `<tr><td>${esc(r.time)}</td><td>${esc(r.keyboard)}</td><td>${esc(r.tag)}<br><span class="muted small">${den} esperadas</span></td><td>${r.received.map(label).map(esc).join(', ')||'—'}${r.missing.length?`<br><span class="bad small">Faltan: ${r.missing.map(label).map(esc).join(', ')}</span>`:''}</td><td>${r.maxExpected}/${den}</td><td>${r.maxTotal}</td><td class="${r.fullOverlap?'pass':r.allReceived?'':'fail'}">${r.fullOverlap?'Combinación simultánea observada':r.allReceived?'No coincidieron todas a la vez':'Revisar teclas ausentes'}</td></tr>`
+ }).join(''):'<tr><td colspan="7" class="muted">Aún no hay pruebas.</td></tr>';
+}
+function drawComparison(){
+ if(!history.length){$('comparison').innerHTML='<p class="muted">Guarda al menos una prueba para ver el resumen.</p>';return}
+ const groups={};
+ history.forEach(r=>{const k=r.keyboard+'|||'+r.tag; (groups[k] ||= {keyboard:r.keyboard,tag:r.tag,n:0,pass:0,received:0,expected:0,maxOverlap:0,maxTotal:0});const g=groups[k];g.n++;g.pass+=r.fullOverlap?1:0;g.received+=r.received.length;g.expected+=r.expected.length;g.maxOverlap=Math.max(g.maxOverlap,r.maxExpected);g.maxTotal=Math.max(g.maxTotal,r.maxTotal)});
+ $('comparison').innerHTML=`<table><thead><tr><th>Teclado</th><th>Conjunto</th><th>Pruebas</th><th>Combinación completa observada</th><th>Promedio de teclas recibidas</th><th>Máx. total observado</th></tr></thead><tbody>${Object.values(groups).map(g=>`<tr><td>${esc(g.keyboard)}</td><td>${esc(g.tag)}</td><td>${g.n}</td><td>${g.pass}/${g.n}</td><td>${(g.received/g.n).toFixed(1)} / ${(g.expected/g.n).toFixed(1)}</td><td>${g.maxTotal}</td></tr>`).join('')}</tbody></table>`;
+}
+function download(name,content,type){const b=new Blob([content],{type}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+$('exportJson').onclick=()=>download('antighost-lab-comparacion.json',JSON.stringify({generatedAt:new Date().toISOString(),method:'Captura de eventos de teclado recibidos por Chrome; no certifica circuito eléctrico.',tests:history},null,2),'application/json');
+$('exportCsv').onclick=()=>{const q=v=>'"'+String(v).replace(/"/g,'""')+'"';const rows=[['Hora','Teclado','Distribucion','Conjunto','Esperadas','Recibidas','Faltantes','Max esperadas simultaneas','Max total simultaneo','Combinacion completa observada'],...history.map(r=>[r.time,r.keyboard,r.layout,r.tag,r.expected.map(label).join(' + '),r.received.map(label).join(' + '),r.missing.map(label).join(' + '),r.maxExpected,r.maxTotal,r.fullOverlap?'Sí':'No'])];download('antighost-lab-comparacion.csv','\ufeff'+rows.map(row=>row.map(q).join(',')).join('\r\n'),'text/csv;charset=utf-8')};
+try{const saved=JSON.parse(localStorage.getItem('antighost-lab-v3-settings')||'null');if(saved){if(typeof saved.keyboard==='string')$('keyboardName').value=saved.keyboard;if(typeof saved.layout==='string'&&[...$('layout').options].some(o=>o.value===saved.layout))$('layout').value=saved.layout}}catch{}
+function saveSettings(){try{localStorage.setItem('antighost-lab-v3-settings',JSON.stringify({keyboard:$('keyboardName').value,layout:$('layout').value}))}catch{}}
+$('keyboardName').addEventListener('change',saveSettings);$('layout').addEventListener('change',saveSettings);
+drawChecks();renderLive();drawResults();drawComparison();
+})();
+</script></body></html>

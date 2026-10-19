@@ -1,0 +1,23 @@
+{
+  "name": "antighost-lab-desktop",
+  "version": "3.1.0",
+  "private": true,
+  "description": "AntiGhost Lab Desktop - comparador de teclados",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win portable",
+    "dist:installer": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^35.7.5",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.antighostlab.desktop",
+    "productName": "AntiGhost Lab",
+    "files": ["main.js", "preload.js", "index.html", "package.json"],
+    "directories": {"output": "dist"},
+    "win": {"target": ["portable"], "artifactName": "AntiGhost-Lab-Desktop-${version}.${ext}"}
+  }
+}

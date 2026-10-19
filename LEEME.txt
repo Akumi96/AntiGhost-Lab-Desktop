@@ -1,0 +1,27 @@
+AntiGhost Lab Desktop 3.1 - Windows 11
+
+ESTE ZIP CONTIENE EL PROYECTO DE ESCRITORIO, NO UN .EXE YA COMPILADO.
+
+PARA GENERAR EL EJECUTABLE PORTABLE:
+1. Instala Node.js LTS desde https://nodejs.org/ (solo una vez).
+2. Descomprime este ZIP.
+3. Haz doble clic en CREAR_EXE_WINDOWS.bat.
+4. Espera la descarga de Electron y la compilacion (requiere Internet).
+5. El .exe portable aparecera en la carpeta dist.
+
+PARA EJECUTAR SIN CREAR .EXE:
+- Doble clic en INICIAR_WINDOWS.bat (requiere Node.js).
+
+CARACTERISTICAS:
+- Ventana independiente de Chrome.
+- Conserva las pruebas y comparaciones de AntiGhost Lab 3.0.
+- Los resultados terminados se guardan localmente en el perfil de la aplicacion.
+- Confirmacion al cerrar para evitar cierres accidentales.
+- No requiere servidor ni cuenta.
+
+LIMITACIONES:
+- Windows puede interceptar atajos como Alt+Tab, Ctrl+Alt+Supr o Win+L.
+- El programa NO bloquea atajos globales ni puede garantizar deteccion fisica de todas las teclas.
+- No se ha compilado ni probado el ejecutable en Windows desde este entorno.
+- No hay firma digital; Windows SmartScreen puede advertir sobre ejecutables propios sin firma.
+- Los datos guardados por Chrome en la version HTML no se migran automaticamente al programa de escritorio. Exporta los resultados antes de cambiar.
