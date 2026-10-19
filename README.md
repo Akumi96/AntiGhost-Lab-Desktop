@@ -1,95 +1,73 @@
 # AntiGhost-Lab-Desktop
-Free and open-source keyboard anti-ghosting and key rollover testing tool for Windows. Test simultaneous key presses, compare keyboards, and export results.
+Herramienta gratuita para Windows que permite probar pulsaciones simultáneas, detectar posibles limitaciones de anti-ghosting y comparar el comportamiento de distintos teclados.
 
 # AntiGhost Lab Desktop
 
-AntiGhost Lab Desktop is a free keyboard testing tool for Windows, built with Electron.
+AntiGhost Lab Desktop es una herramienta gratuita para Windows que permite comprobar cómo responde un teclado al presionar varias teclas al mismo tiempo.
 
-I started this project because I wanted to compare two keyboards and find out how well they handle multiple keys being pressed at the same time. Instead of relying only on manufacturer specifications, I wanted a simple way to run the same tests on both keyboards and compare the results.
+El proyecto nació de algo bastante simple: quería comparar dos teclados y saber cuál respondía mejor a determinadas combinaciones, especialmente al jugar. Como las especificaciones de los fabricantes no siempre reflejan cómo se comporta un teclado en situaciones reales, decidí crear una herramienta para hacer mis propias pruebas.
 
-The application lets you monitor key presses in real time, test different key combinations, and save the results for later comparison.
+La aplicación permite visualizar las teclas detectadas en tiempo real, realizar pruebas con distintas combinaciones y guardar los resultados para compararlos después.
 
-## Features
+## Funciones
 
-- Real-time key press detection.
-- Simultaneous key press counter.
-- Guided tests with predefined key combinations.
-- Custom key combinations.
-- Test history and keyboard comparison.
-- Automatic saving of completed tests.
-- Export results to JSON or CSV.
-- Portable Windows application.
+- Detección de pulsaciones en tiempo real.
+- Contador de teclas presionadas simultáneamente.
+- Pruebas guiadas con combinaciones predefinidas.
+- Posibilidad de probar combinaciones personalizadas.
+- Historial de pruebas y comparación entre teclados.
+- Guardado automático de los resultados completados.
+- Exportación de resultados en JSON y CSV.
+- Aplicación portátil para Windows.
 
-## Download
+## Descarga
 
-You can download the Windows version from the [Releases](../../releases) page.
+Puedes descargar la versión más reciente desde la sección de [Releases](../../releases).
 
-Download the `.exe` file and run it. You don't need to install Node.js or Chrome.
+Solo necesitas descargar el archivo `.exe` y ejecutarlo. No es necesario instalar Node.js ni Chrome.
 
-Windows may display a SmartScreen warning because the application isn't digitally signed.
+Es posible que Windows SmartScreen muestre una advertencia porque el ejecutable no cuenta con una firma digital.
 
-## How to use
+## Cómo utilizarlo
 
-1. Open AntiGhost Lab Desktop.
-2. Enter the name of the keyboard you're testing.
-3. Start the key capture or select one of the guided tests.
-4. Press the requested key combinations.
-5. Review the results and repeat the tests with another keyboard.
+1. Abre AntiGhost Lab Desktop.
+2. Ingresa el nombre del teclado que quieres probar.
+3. Inicia la captura de teclas o selecciona una de las pruebas guiadas.
+4. Presiona las combinaciones indicadas.
+5. Revisa los resultados y repite las pruebas con otro teclado si quieres compararlos.
 
-For more consistent comparisons, use the same computer, keyboard layout, and test combinations.
+Para obtener comparaciones más consistentes, es recomendable utilizar el mismo equipo, la misma distribución de teclado y las mismas combinaciones en cada prueba.
 
-## Building from source
+## Compilar desde el código fuente
 
-You'll need [Node.js](https://nodejs.org/) installed.
+Para ejecutar o compilar el proyecto necesitas tener instalado [Node.js](https://nodejs.org/).
 
-Clone the repository and install the dependencies:
+Descarga el repositorio e instala las dependencias:
 
 ```bash
 npm install
 ```
 
-Run the application:
+Para iniciar la aplicación:
 
 ```bash
 npm start
 ```
 
-To generate the Windows executable, use the included `CREAR_EXE_WINDOWS.bat` file.
+Para generar el ejecutable de Windows puedes utilizar el archivo `CREAR_EXE_WINDOWS.bat` incluido en el proyecto.
 
-## Limitations
+## Limitaciones
 
-AntiGhost Lab can only detect keyboard events received by the application. It cannot directly examine a keyboard's internal hardware or electrical matrix.
+AntiGhost Lab registra los eventos de teclado que recibe la aplicación. No puede analizar directamente el circuito interno del teclado ni determinar con certeza su capacidad física de anti-ghosting o key rollover.
 
-Some shortcuts are handled by Windows and cannot be blocked by the application. Because of this, certain combinations may not be testable.
+Algunas combinaciones de teclas son utilizadas directamente por Windows y no pueden bloquearse desde la aplicación, por lo que determinadas pruebas podrían no realizarse correctamente.
 
-The results are useful for comparing keyboard behavior, but they shouldn't be treated as a certified hardware test.
+Los resultados sirven como referencia para observar y comparar el comportamiento de distintos teclados, pero no constituyen una certificación técnica del hardware.
 
-## Privacy
+## Privacidad
 
-Test results are stored locally. The application doesn't require an account or an internet connection to perform tests.
+Los resultados se almacenan localmente en el equipo. No es necesario crear una cuenta ni disponer de conexión a Internet para realizar las pruebas.
 
-## Español
+## Licencia
 
-AntiGhost Lab Desktop es una herramienta gratuita para Windows que permite probar cuántas teclas puede registrar un teclado al mismo tiempo.
-
-Creé este proyecto para comparar dos teclados y comprobar cómo responden al presionar distintas combinaciones, especialmente las que se utilizan al jugar.
-
-Con la aplicación puedes ver las teclas detectadas en tiempo real, realizar pruebas guiadas, guardar resultados y comparar diferentes teclados.
-
-### Cómo usarlo
-
-1. Descarga el ejecutable desde [Releases](../../releases).
-2. Abre el programa e ingresa el nombre de tu teclado.
-3. Inicia la captura o selecciona una prueba.
-4. Presiona las combinaciones indicadas.
-5. Revisa los resultados y repite las pruebas con otro teclado.
-
-### Importante
-
-El programa detecta las pulsaciones que recibe Windows, pero no puede analizar directamente el circuito interno del teclado.
-
-Algunos atajos del sistema operativo tampoco pueden bloquearse, por lo que ciertas combinaciones no podrán evaluarse correctamente.
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for details.
+Este proyecto se distribuye bajo la licencia MIT. Puedes consultar los términos en el archivo [LICENSE](LICENSE).
