@@ -1,8 +1,6 @@
-Herramienta gratuita para Windows que permite probar pulsaciones simultáneas, detectar posibles limitaciones de anti-ghosting y comparar el comportamiento de distintos teclados.
-
 # AntiGhost Lab Desktop
 
-AntiGhost Lab Desktop es una herramienta gratuita para Windows que permite comprobar cómo responde un teclado al presionar varias teclas al mismo tiempo.
+Herramienta gratuita para Windows que permite probar pulsaciones simultáneas, detectar posibles limitaciones de anti-ghosting y comparar el comportamiento de distintos teclados.
 
 El proyecto nació de algo bastante simple: quería comparar dos teclados y saber cuál respondía mejor a determinadas combinaciones, especialmente al jugar. Como las especificaciones de los fabricantes no siempre reflejan cómo se comporta un teclado en situaciones reales, decidí crear una herramienta para hacer mis propias pruebas.
 
