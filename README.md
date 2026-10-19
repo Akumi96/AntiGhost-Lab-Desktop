@@ -9,6 +9,17 @@ El proyecto nació de algo bastante simple: quería comparar dos teclados y sabe
 
 La aplicación permite visualizar las teclas detectadas en tiempo real, realizar pruebas con distintas combinaciones y guardar los resultados para compararlos después.
 
+## Capturas de pantalla
+
+### Ventana principal
+![Ventana principal de AntiGhost Lab](capturas/1.png)
+
+### Prueba de teclas
+![Prueba de pulsaciones simultáneas](capturas/2.png)
+
+### Resultados
+![Resultados de las pruebas](capturas/3.png)
+
 ## Funciones
 
 - Detección de pulsaciones en tiempo real.
